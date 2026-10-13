@@ -1,0 +1,13 @@
+{
+  "name": "qualityforge",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": ["app/*"],
+  "scripts": {
+    "db:up": "docker compose up -d db",
+    "dev:backend": "npm run dev --workspace app/backend",
+    "migrate": "npm run migrate --workspace app/backend",
+    "seed": "npm run seed --workspace app/backend",
+    "typecheck": "npm run typecheck --workspace app/backend"
+  }
+}

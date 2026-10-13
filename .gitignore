@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env
+reports/*
+!reports/.gitkeep
+playwright-report/
+test-results/
+coverage/
