@@ -2,12 +2,27 @@
   "name": "qualityforge",
   "private": true,
   "version": "0.1.0",
-  "workspaces": ["app/*"],
+  "workspaces": [
+    "app/*"
+  ],
   "scripts": {
     "db:up": "docker compose up -d db",
     "dev:backend": "npm run dev --workspace app/backend",
     "migrate": "npm run migrate --workspace app/backend",
     "seed": "npm run seed --workspace app/backend",
-    "typecheck": "npm run typecheck --workspace app/backend"
+    "typecheck": "npm run typecheck --workspace app/backend && npm run typecheck:tests",
+    "typecheck:tests": "tsc -p tests/tsconfig.json --noEmit",
+    "test": "npm run test:unit && npm run test:db",
+    "test:unit": "vitest run --project unit",
+    "test:db": "vitest run --project db --no-file-parallelism",
+    "test:integration": "vitest run --project db --no-file-parallelism tests/integration",
+    "test:api": "vitest run --project db --no-file-parallelism tests/api"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/supertest": "^6.0.2",
+    "supertest": "^7.0.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
   }
 }

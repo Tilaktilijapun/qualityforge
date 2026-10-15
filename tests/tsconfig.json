@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "nodenext",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "types": ["node"],
+    "paths": {
+      "@backend/*": ["../app/backend/src/*"],
+      "@testdata/*": ["../test-data/*"]
+    }
+  },
+  "include": ["**/*.ts", "../test-data/**/*.ts", "../vitest.workspace.ts"]
+}
