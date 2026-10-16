@@ -12,5 +12,5 @@
       "@testdata/*": ["../test-data/*"]
     }
   },
-  "include": ["**/*.ts", "../test-data/**/*.ts", "../vitest.workspace.ts"]
+  "include": ["**/*.ts", "../test-data/**/*.ts", "../vitest.workspace.ts", "../playwright.config.ts"]
 }
