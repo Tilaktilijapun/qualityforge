@@ -6,7 +6,9 @@
 | Integration | `tests/integration` | Yes | Transactions, rollback, idempotency and concurrency at the service layer; DB constraints |
 | API | `tests/api` | Yes | HTTP contract, validation, auth, authorization, error shape |
 
-UI (Playwright) and performance (k6) arrive in later phases.
+| UI (Playwright) | `tests/ui` | Yes + both servers | Critical browser journeys, access control, real stock effects |
+
+Performance (k6) arrives in a later phase.
 
 ## Run
 ```bash
@@ -17,6 +19,14 @@ npm run test:unit                # fast, no DB
 npm run test:integration
 npm run test:api
 ```
+### UI tests
+```bash
+npm run e2e:install   # once: downloads Chromium
+npm run test:ui       # starts backend + frontend automatically, migrates and seeds the test DB
+npx playwright show-report reports/playwright
+```
+Don't run `npm test` and `npm run test:ui` at the same time — both use `qualityforge_test`. Each UI test creates its own user and product, so UI tests are safe to run in parallel with each other.
+
 Override the database with `TEST_DATABASE_URL`. The suite **refuses to run** unless the database name ends in `_test`, because every test starts with a `TRUNCATE`.
 
 ## How isolation works
